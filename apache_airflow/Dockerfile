@@ -13,5 +13,7 @@ COPY requirements.txt .
 RUN pip install docker==7.0.0
 
 # Avoid cache. This force to reinstall last update of package
-RUN echo '2024-01-26 12:00:00' > /tmp/force_cache_invalidator
+RUN echo "$(date '+%Y-%m-%d %H:%M:%S')" > /tmp/force_cache_invalidator
+
+# Install requirements
 RUN pip install --upgrade -r requirements.txt

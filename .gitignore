@@ -6,3 +6,5 @@ apache_airflow/logs/
 apache_airflow/plugins/
 
 mongodb/mongo-init-scripts/
+
+mlflow/mlflow/
