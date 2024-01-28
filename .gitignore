@@ -1,0 +1,8 @@
+.env
+
+apache_airflow/config/
+apache_airflow/dags/
+apache_airflow/logs/
+apache_airflow/plugins/
+
+mongodb/mongo-init-scripts/

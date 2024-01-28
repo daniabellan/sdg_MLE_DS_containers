@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  streamlit_app:
+    container_name: streamlit_app
+    build:
+      dockerfile: Dockerfile
+    command: streamlit run app/streamlit.py --server.port 8000
+    volumes:
+      - ./:/app
+    ports:
+      - 8000:8000
+    networks:
+      - project_network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+
+  tunnel:
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+
+
+networks:
+  project_network:
+    external: true 

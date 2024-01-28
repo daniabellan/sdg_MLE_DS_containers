@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  scripts_container:
+    container_name: gpu_processing
+    build:
+      dockerfile: Dockerfile
+    networks:
+      - project_network
+    tty: true
+    
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+
+networks:
+  project_network:
+    external: true 
