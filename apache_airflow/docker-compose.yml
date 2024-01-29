@@ -297,6 +297,13 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+  tunnel:
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+
 networks:
   project_network:
     external: true 
